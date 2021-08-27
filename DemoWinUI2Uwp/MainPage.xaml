@@ -10,7 +10,12 @@
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls">
 
     <Grid Background="{ThemeResource AcrylicBackgroundFillColorDefaultBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="16"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <TextBlock>Hello World</TextBlock>
+        <TextBlock Grid.Row="0" TextAlignment="Center">WinUI 2 Demo</TextBlock>
+        <SwapChainPanel x:Name="gameCanvas" Grid.Row="1"></SwapChainPanel>
     </Grid>
 </Page>

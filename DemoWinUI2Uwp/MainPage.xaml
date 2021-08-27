@@ -13,9 +13,42 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="16"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" TextAlignment="Center">WinUI 2 Demo</TextBlock>
+        
         <SwapChainPanel x:Name="gameCanvas" Grid.Row="1"></SwapChainPanel>
+        
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Padding="3">
+            <TextBlock>
+                <Run Text="Game Background:&#160;&#160;&#160;&#160;"/>
+            </TextBlock>
+            <muxc:SplitButton Grid.Row="2" ToolTipService.ToolTip="Background Color"  Click="BrushButtonClick">
+                <Border x:Name="SelectedColorBorder" Width="20" Height="20"/>
+                <muxc:SplitButton.Flyout>
+                    <Flyout x:Name="BrushFlyout">
+                        <!-- Set SingleSelectionFollowsFocus="False" so that keyboard navigation works correctly. -->
+                        <GridView ItemsSource="{x:Bind ColorOptions}"
+                      SelectionChanged="BrushSelectionChanged"
+                      SingleSelectionFollowsFocus="False"
+                      SelectedIndex="0" Padding="0">
+                            <GridView.ItemTemplate>
+                                <DataTemplate>
+                                    <Rectangle Fill="{Binding}" Width="20" Height="20"/>
+                                </DataTemplate>
+                            </GridView.ItemTemplate>
+                            <GridView.ItemContainerStyle>
+                                <Style TargetType="GridViewItem">
+                                    <Setter Property="Margin" Value="2"/>
+                                    <Setter Property="MinWidth" Value="0"/>
+                                    <Setter Property="MinHeight" Value="0"/>
+                                </Style>
+                            </GridView.ItemContainerStyle>
+                        </GridView>
+                    </Flyout>
+                </muxc:SplitButton.Flyout>
+            </muxc:SplitButton>
+        </StackPanel>
     </Grid>
 </Page>

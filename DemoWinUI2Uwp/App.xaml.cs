@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Serilog;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -33,6 +34,8 @@ namespace DemoWinUI2Uwp
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            Log.Logger = new LoggerConfiguration().WriteTo.Debug().CreateLogger();
         }
 
         /// <summary>
